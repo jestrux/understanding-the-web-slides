@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Birdy Demo</title>
+    <meta charset="utf-8">
+    <style>
+      html{
+        overflow: hidden;
+      }
+
+      body{
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      bird{
+        display: block;
+        width: 168px;
+        height: 116px;
+        background-size: cover;
+        background-image: url(red.png);
+        margin-bottom: 2.5em;
+      }
+
+      bird[flying="yes"]{
+        background-size: 285%;
+        background-position: 325px;
+        background-image: url(red.gif);
+        animation: flying 10s infinite;
+      }
+
+      bird[color="yellow"]{
+        background-image: url(yellow.png);
+      }
+      
+      bird[color="yellow"][flying="yes"]{
+        background-image: url(yellow.gif);
+      }
+
+      @keyframes flying{
+        33.33%{
+          transform: translateX(150%);
+        }
+
+        40%{
+          opacity: 0;
+        }
+        
+        60%{
+          opacity: 0;
+        }
+
+        66.666%{
+          opacity: 1;
+          transform: translateX(-150%);
+        }
+      }
+
+      #buttons{
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #buttons button{
+        font-size: 1.1em;
+        display: block;
+        margin-bottom: 1.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <bird></bird>
+    <audio src="nelly-furtado.mp3" loop preload></audio>
+
+    <div id="buttons">
+      <button onclick="makeItAngry()">But yellow's my favorite color</button>
+      <button onclick="makeItFly()">Please make it fly, please, please</button>
+      <button onclick="playNellyFurtado()">🤔 there's that Nelly Furtado song</button>
+    </div>
+
+    <script>
+      var bird = document.querySelector("bird");
+      var audio = document.querySelector("audio");
+
+      function makeItAngry(){
+        bird.setAttribute("color", "yellow");
+      }
+      
+      function makeItFly(){
+        bird.setAttribute("flying", "yes");
+      }
+
+      function playNellyFurtado(){
+        audio.play();
+      }
+    </script>
+  </body>
+</html>
