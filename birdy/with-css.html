@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Birdy Demo</title>
+    <meta charset="utf-8">
+    <style>
+      html{
+        overflow: hidden;
+      }
+
+      body{
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      bird{
+        display: block;
+        width: 168px;
+        height: 116px;
+        background-size: cover;
+        background-image: url(red.png);
+        margin-bottom: 2.5em;
+      }
+
+      bird[flying="yes"]{
+        background-size: 285%;
+        background-position: 325px;
+        background-image: url(red.gif);
+        animation: flying 10s infinite;
+      }
+
+      bird[color="yellow"]{
+        background-image: url(yellow.png);
+      }
+      
+      bird[color="yellow"][flying="yes"]{
+        background-image: url(yellow.gif);
+      }
+
+      @keyframes flying{
+        33.33%{
+          transform: translateX(150%);
+        }
+
+        40%{
+          opacity: 0;
+        }
+        
+        60%{
+          opacity: 0;
+        }
+
+        66.666%{
+          opacity: 1;
+          transform: translateX(-150%);
+        }
+      }
+
+      #buttons{
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1em;
+      }
+
+      #buttons button{
+        font-size: 1.1em;
+        display: block;
+        margin-bottom: 1.5em;
+        border: 2px solid #000;
+        border-radius: 50px;
+        padding: 0.6em 1em;
+      }
+
+      button:nth-child(1){
+        background: #f6e25e;
+      }
+      
+      button:nth-child(2){
+        background: #7bd6f1;
+      }
+      
+      button:nth-child(3){
+        position: relative;
+        overflow: hidden;
+      }
+      
+      button:nth-child(3) span{
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+      }
+      
+      button:nth-child(3):before,
+      button:nth-child(3):after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url(note.png);
+        background-size: 20px;
+        opacity: 0.7;
+      }
+
+      button:nth-child(3):after{
+        background: rgba(255, 255, 255, 0.8);
+        opacity: 1;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <bird></bird>
+    <audio src="nelly-furtado.mp3" loop preload></audio>
+
+    <div id="buttons">
+      <button onclick="makeItAngry()">But yellow's my favorite color</button>
+      <button onclick="makeItFly()">Please make it fly, please, please</button>
+      <button onclick="playNellyFurtado()">
+        <span>🤔 there's that Nelly Furtado song</span>
+      </button>
+    </div>
+
+    <p>
+      <a href="with-js.html">ADD JAVASCRIPT</a>
+    </p>
+  </body>
+</html>
